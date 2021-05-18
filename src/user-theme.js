@@ -10,22 +10,24 @@ themeSwitch.addEventListener('change', changeTheme);
 
 if (myTheme) {
     document.body.classList.add(myTheme);
+} else {
+    document.body.classList.add(Theme.LIGHT); 
+};
 
-    if (myTheme === Theme.DARK) {
-        themeSwitch.checked = true;
-    } else {
-        document.body.classList.add(Theme.LIGHT); 
-    };
+if (myTheme === Theme.DARK) {
+    themeSwitch.checked = true;
 };
 
 function changeTheme(evt) {
     if (evt.target.checked) {
-        document.body.classList.toggle(Theme.LIGHT);
-        document.body.classList.toggle(Theme.DARK);
-        localStorage.setItem('my-theme', Theme.DARK);
+        replaceTheme(Theme.DARK, Theme.LIGHT);
     } else {
-        document.body.classList.toggle(Theme.LIGHT);
-        document.body.classList.toggle(Theme.DARK);
-        localStorage.setItem('my-theme', Theme.LIGHT);
+        replaceTheme(Theme.LIGHT, Theme.DARK);
     };
+};
+
+function replaceTheme(newTheme, OldTheme) {
+    document.body.classList.add(newTheme);
+    document.body.classList.remove(OldTheme);
+    localStorage.setItem('my-theme', newTheme);
 };
