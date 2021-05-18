@@ -8,14 +8,11 @@ const myTheme = localStorage.getItem('my-theme');
 
 themeSwitch.addEventListener('change', changeTheme);
 
-if (myTheme) {
+if (myTheme === Theme.DARK) {
     document.body.classList.add(myTheme);
+    themeSwitch.checked = true;
 } else {
     document.body.classList.add(Theme.LIGHT); 
-};
-
-if (myTheme === Theme.DARK) {
-    themeSwitch.checked = true;
 };
 
 function changeTheme(evt) {
